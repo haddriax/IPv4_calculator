@@ -3,6 +3,6 @@ project(IPv4_calculator)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(NewCLionTest main.cpp
+add_executable(Ipv4_calculator main.cpp
         IpAddress.cpp
         IpAddress.h)
