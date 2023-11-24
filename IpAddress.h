@@ -43,4 +43,4 @@ public:
     [[nodiscard]] uint32_t max_host_number() const;
 };
 
-#endif //NEWCLIONTEST_IPADDRESS_H
+#endif //IPv4_calculator_IPADDRESS_H
