@@ -2,8 +2,8 @@
 // Created by hadriax on 23/11/23.
 //
 
-#ifndef NEWCLIONTEST_IPADDRESS_H
-#define NEWCLIONTEST_IPADDRESS_H
+#ifndef Ipv4_Calculator_IPADDRESS_H
+#define Ipv4_Calculator_IPADDRESS_H
 
 #include <cstdint>
 #include <string>
