@@ -22,7 +22,7 @@ private:
     IP broadcast{};
 
 public:
-    explicit IpAddress(const std::string& ip_cidr);
+    explicit IpAddress(const std::string& ip_cidr) noexcept ;
 
 private:
     void parse_ip(const std::string& ip_cidr);

@@ -9,7 +9,26 @@
 #include <bitset>
 #include "IpAddress.h"
 
-IpAddress::IpAddress(const std::string &ip_cidr) {
+IpAddress::IpAddress(const std::string &ip_cidr) noexcept {
+    if (ip_cidr.size() > 18) {
+        throw std::invalid_argument("Given IP does not match max IP size");
+    }
+
+    bool format_is_valid = true;
+
+    int dot_counter = 0;
+    bool have_slash = false;
+    for (const auto c: ip_cidr) {
+        if (c == '.')
+            ++dot_counter;
+        if (c == '/')
+            have_slash = true;
+    }
+    format_is_valid = (dot_counter == 3) && have_slash;
+    if (!format_is_valid) {
+        throw std::invalid_argument("Given IP does not match format rules");
+    }
+
     parse_ip(ip_cidr);
     netmask.ip32 = create_netmask(cidr);
     network = create_network_address();
