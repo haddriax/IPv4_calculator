@@ -23,6 +23,12 @@ IpAddress::IpAddress(const std::string &ip_cidr) noexcept {
             ++dot_counter;
         if (c == '/')
             have_slash = true;
+
+        if (!std::isdigit(static_cast<unsigned char>(c)) &&
+            c != '.' &&
+            c != '/') {
+            throw std::invalid_argument("Unexpected character in IP.19");
+        }
     }
     format_is_valid = (dot_counter == 3) && have_slash;
     if (!format_is_valid) {
@@ -35,7 +41,7 @@ IpAddress::IpAddress(const std::string &ip_cidr) noexcept {
     broadcast = create_broadcast_address();
 }
 
-void IpAddress::parse_ip(const std::string& ip_cidr) {
+void IpAddress::parse_ip(const std::string& ip_cidr) noexcept {
     // Declare an istringstream to process the string.
     std::istringstream tokenStream(ip_cidr);
     // Find the index where the CIDR begin, i.e. the '/' separator.
@@ -62,6 +68,10 @@ void IpAddress::parse_ip(const std::string& ip_cidr) {
             // Convert literal IP Bytes to int.
             auto [p, ec] =
                     std::from_chars(tmp_str.data(), tmp_str.data() + tmp_str.size(), v);
+
+            if (v > 255)
+                throw std::invalid_argument("One or more Bytes value is invalid.");
+
             // Store the integer representation of the Byte in the union as a 8bits unsigned int.
             ip.ip8[--i] = static_cast<uint8_t>(v);
         }

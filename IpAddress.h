@@ -25,7 +25,7 @@ public:
     explicit IpAddress(const std::string& ip_cidr) noexcept ;
 
 private:
-    void parse_ip(const std::string& ip_cidr);
+    void parse_ip(const std::string& ip_cidr) noexcept;
 public:
     static uint32_t create_netmask(uint8_t cidr);
     void display_ip() const;
