@@ -31,6 +31,7 @@ public:
     void display_ip() const;
     void display_cidr() const;
     static void display_ip(const IP& _ip);
+    void display_netmask() const;
     void display_binary_mask() const;
     void display_hexadecimal_mask() const;
     [[nodiscard]] IP get_network_address() const;

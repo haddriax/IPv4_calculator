@@ -16,6 +16,10 @@ void test_ip(const std::string& input) {
         ip.display_cidr();
         std::cout << std::endl;
 
+        std::cout << "Netmask is : ";
+        ip.display_netmask();
+        std::cout << std::endl;
+
         std::cout << "Network address is : ";
         IpAddress::display_ip(ip.get_network_address());
         std::cout << std::endl;

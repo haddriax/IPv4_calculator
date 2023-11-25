@@ -95,6 +95,13 @@ void IpAddress::display_cidr() const {
     std::cout << static_cast<uint32_t>(cidr);
 }
 
+void IpAddress::display_netmask() const {
+    for (auto i = 3; i >= 0; --i) {
+        std::cout << std::dec << static_cast<uint32_t>(netmask.ip8[i]);
+        if (i != 0) std::cout << '.';
+    }
+}
+
 void IpAddress::display_binary_mask() const {
     std::cout << "Binary netmask: " << std::bitset<sizeof(netmask.ip32) * 8>{netmask.ip32} << std::endl;
 }
