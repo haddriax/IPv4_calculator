@@ -22,10 +22,10 @@ private:
     IP broadcast{};
 
 public:
-    explicit IpAddress(const std::string& ip_cidr) noexcept ;
+    explicit IpAddress(const std::string& ip_cidr);
 
 private:
-    void parse_ip(const std::string& ip_cidr) noexcept;
+    void parse_ip(const std::string& ip_cidr);
 public:
     static uint32_t create_netmask(uint8_t cidr);
     void display_ip() const;

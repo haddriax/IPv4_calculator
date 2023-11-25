@@ -32,17 +32,21 @@ void test_ip(const std::string& input) {
         std::cout << std::endl;
     }
     catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
+        std::cout << ' ' <<e.what() << std::endl;
     }
 }
 
 int main() {
     std::string input_ip;
 
-    std::cout << "Input IP with CIDR: ";
-    std::cin >> input_ip;
-
-    test_ip(input_ip);
+    while (!((input_ip.starts_with('q') && input_ip.size() == 1)||
+    input_ip == "quit" ||
+    input_ip == "exit"))
+    {
+        std::cout << "Input IP with CIDR: ";
+        std::cin >> input_ip;
+        test_ip(input_ip);
+    }
     // test_ip("192.168.6.15/24");
     // test_ip("214.133.67.154/8");
     // test_ip("174.54.11.88/19");

@@ -9,7 +9,7 @@
 #include <bitset>
 #include "IpAddress.h"
 
-IpAddress::IpAddress(const std::string &ip_cidr) noexcept {
+IpAddress::IpAddress(const std::string &ip_cidr) {
     if (ip_cidr.size() > 18) {
         throw std::invalid_argument("Given IP does not match max IP size");
     }
@@ -41,7 +41,7 @@ IpAddress::IpAddress(const std::string &ip_cidr) noexcept {
     broadcast = create_broadcast_address();
 }
 
-void IpAddress::parse_ip(const std::string& ip_cidr) noexcept {
+void IpAddress::parse_ip(const std::string& ip_cidr) {
     // Declare an istringstream to process the string.
     std::istringstream tokenStream(ip_cidr);
     // Find the index where the CIDR begin, i.e. the '/' separator.
@@ -58,6 +58,11 @@ void IpAddress::parse_ip(const std::string& ip_cidr) noexcept {
                     std::from_chars(tmp_str.data(), tmp_str.data() + tmp_str.size(), tmp);
 
         }
+
+        if (tmp > 32) {
+            throw std::invalid_argument("Given CIDR is > 32.");
+        }
+
         // Convert and store CIDR.
         cidr = static_cast<uint8_t>(tmp);
 
