@@ -1,2 +1,2 @@
-From input IP/CIDR => Number of hosts, netmask, Broadcoast et network address
+From input IP/CIDR => Number of hosts, netmask, Broadcoast and network address
 In C++
